@@ -11,6 +11,7 @@ pipeline {
 				}
 			}	
 		}
+
 		stage('build'){
 			steps{ 
 				echo '1. Building Maven Workload'
@@ -23,7 +24,8 @@ pipeline {
 			steps{ echo '2. Building Docker image'
 				sh "docker build -t 2alinfo7/position-simulator:${commit_id} ."
 				echo 'Docker image built'}	
-			}
+			
+}
 		stage ("image push") {
             		steps {
                 		echo '3. Pushing Docker Image'
@@ -31,6 +33,7 @@ pipeline {
                 		echo 'Docker image pushed'
             			}
         		}
+
 		stage('deploy'){
 			steps{ 
 				echo '4. Deployment To Kubernetes'
